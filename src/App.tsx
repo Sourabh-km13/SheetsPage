@@ -1,5 +1,6 @@
 
 import './App.css'
+import HeaderBottom from './components/Headers/HeaderBottom'
 import HeaderTop from './components/Headers/HeaderTop'
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
     <>
       <div>
         <HeaderTop/>
-        
+        <HeaderBottom/>
       </div>
     </>
   )
