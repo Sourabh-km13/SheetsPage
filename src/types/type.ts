@@ -1,4 +1,4 @@
-export interface Job {
+export default interface Job {
     jobRequest: string;
     submitted: string;
     status: string;
