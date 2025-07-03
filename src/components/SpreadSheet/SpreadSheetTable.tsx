@@ -5,17 +5,19 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import EditableCell from './Cell';
-import type {ColumnDef,ColumnResizeMode,} from "@tanstack/react-table"
+import type { ColumnDef, ColumnResizeMode, } from "@tanstack/react-table"
 import {
   CalendarDays,
   UserRound,
   Globe,
-  FolderKanban,
-  Tags,
-  ArrowDownUp,
-  CheckCircle,
   Hash,
   Plus,
+  BriefcaseBusiness,
+  CircleArrowUp,
+  Link2,
+  MoreHorizontal,
+  RefreshCcw,
+  Split,
 } from "lucide-react";
 
 const defaultColumns = [
@@ -38,15 +40,11 @@ const defaultData = [
   ['Prepare financial report for Q4', '25-01-2025', 'Blocked', 'Jessica Brown', 'www.jessicabrown.com', 'Kevin Smith', 'Low', '30-01-2025', '2,800,000 ₹'],
 ];
 const headerIcons: Record<string, React.ReactNode> = {
-  'Job Request': <FolderKanban className="w-4 h-4" />,
+  'Job Request': <BriefcaseBusiness className="w-4 h-4" />,
   'Submitted': <CalendarDays className="w-4 h-4" />,
-  'Status': <CheckCircle className="w-4 h-4" />,
+  'Status': <CircleArrowUp className="w-4 h-4" />,
   'Submitter': <UserRound className="w-4 h-4" />,
   'URL': <Globe className="w-4 h-4" />,
-  'Assigned': <UserRound className="w-4 h-4" />,
-  'Priority': <ArrowDownUp className="w-4 h-4" />,
-  'Due Date': <CalendarDays className="w-4 h-4" />,
-  'Est. Value': <Tags className="w-4 h-4" />,
 };
 
 const generateEmptyRows = (count: number, cols: number) =>
@@ -80,8 +78,8 @@ const SpreadsheetTable: React.FC = () => {
     setData((prev) => prev.map((row) => [...row, '']));
   };
   type tagType = 'Status' | 'Priority'
-  const getTagStyle = (type: tagType, value: string):string=> {
-    const map:Record<tagType,Record<string,string>> = {
+  const getTagStyle = (type: tagType, value: string): string => {
+    const map: Record<tagType, Record<string, string>> = {
       Status: {
         Complete: 'bg-green-100 text-green-800',
         'In-process': 'bg-yellow-100 text-yellow-800',
@@ -101,11 +99,11 @@ const SpreadsheetTable: React.FC = () => {
     const baseCols: ColumnDef<string[]>[] = [
       {
         id: '#',
-        header: ()=>(
+        header: () => (
           <div className='text-center'>
-            <Hash color='#AFAFAF' height={16}/>
+            <Hash color='#AFAFAF' height={16} />
           </div>
-      ),
+        ),
         size: 40,
         cell: ({ row }) => row.index + 1,
       },
@@ -119,7 +117,7 @@ const SpreadsheetTable: React.FC = () => {
           <span>{col}</span>
         </div>
       ),
-      size: 160,
+      size: 150,
       enableResizing: true,
       cell: ({ row }) => {
         const val = row.original[index];
@@ -165,26 +163,76 @@ const SpreadsheetTable: React.FC = () => {
 
   return (
     <div className=" bg-white text-[#121212] min-h-screen w-screen overflow-x-scroll">
-      <div className="flex justify-between items-center ">
-        <h2 className="text-md font-semibold">Q3 Financial Overview</h2>
-        <button
+      <div className="flex justify-between ml-10 text-xs">
+        <div className='basis-1/2 py-2 px-2 bg-[#e2e2e2]'>
+          <div className='flex gap-1 w-max bg-[#eeeeee] rounded-sm items-center p-1'>
+            <Link2 height={16} color='#1A8CFF' />
+            <span>
+              Q3 Financial Overview
+            </span>
+            <RefreshCcw height={16} color='#FA6736'/>
+          </div>
+        </div>
+
+        <div className="flex w-fit divide-x divide-gray-100 overflow-hidden">
+          {/* ABC */}
+          <div className="flex items-center justify-between gap-2 px-4 py-2 bg-green-100 w-32">
+            <Split height={16} color='#A3ACA3'/>
+            <span className="text-xs font-medium text-gray-800">ABC</span>
+
+            <MoreHorizontal className="w-4 h-4 text-gray-400" />
+          </div>
+
+          {/* Answer a question */}
+          <div className="flex items-center justify-between gap-2 px-4 py-2 w-60 bg-purple-200">
+            <Split height={16} color='#A3ACA3'/>
+
+            <span className="text-xs font-medium text-gray-800">Answer a question</span>
+
+            <MoreHorizontal className="w-4 h-4 text-gray-400" />
+          </div>
+
+          {/* Extract */}
+          <div className="flex items-center justify-between gap-2 px-4 py-2 bg-red-200 w-32">
+            <Split height={16} color='#A3ACA3'/>
+            <span className="text-xs font-medium text-gray-800">Extract</span>
+
+            <MoreHorizontal className="w-4 h-4 text-gray-400" />
+          </div>
+
+          {/* Plus Button */}
+          <div 
+          onClick={addColumn}
+          className="flex items-center justify-center px-4 py-2 bg-gray-200 w-32 cursor-pointer">
+            <Plus className="w-5 h-5 text-black" />
+          </div>
+        </div>
+        {/* <button
           onClick={addColumn}
           className="px-3 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-200"
         >
           <Plus/>
-        </button>
+        </button>  */}
       </div>
+
+
+      {/* <button
+          onClick={addColumn}
+          className="px-3 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-200"
+        >
+          <Plus/>
+        </button> */}
 
       <div className=" border border-gray-200 rounded overflow-x-auto">
         <div className="min-w-max">
           {/* Header */}
-          <div className=" flex bg-[#eeeeee] text-xs font-semibold text-[#757575] select-none">
+          <div className=" flex bg-[#eeeeee]   text-xs font-semibold text-[#757575] select-none">
             {table.getHeaderGroups().map((headerGroup) =>
               headerGroup.headers.map((header) => (
-                
+
                 <div
                   key={header.id}
-                  className="relative border-r border-gray-200 px-2 py-2 nth-[7]:bg-[#E8F0E9]
+                  className="relative border-r border-gray-100 px-2 py-2 nth-[7]:bg-[#E8F0E9]
                    nth-[8]:bg-[#EAE3FC] nth-[9]:bg-[#EAE3FC] nth-[10]:bg-[#FFE9E0]
                   "
                   style={{ width: header.getSize() }}
@@ -204,11 +252,11 @@ const SpreadsheetTable: React.FC = () => {
 
           {/* Rows */}
           {table.getRowModel().rows.map((row) => (
-            <div key={row.id} className="flex border-t border-gray-200 hover:bg-gray-50 text-xs">
+            <div key={row.id} className="flex border-t border-gray-100 hover:bg-gray-50 text-xs">
               {row.getVisibleCells().map((cell) => (
                 <div
                   key={cell.id}
-                  className="border-r text-center border-gray-200 px-2 py-2 truncate"
+                  className="border-r text-center border-gray-100 px-2 py-2 truncate"
                   style={{ width: cell.column.getSize() }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
