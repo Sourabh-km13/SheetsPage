@@ -14,7 +14,14 @@ const EditableCell: React.FC<EditableCellProps> = ({
   updateData,
 }) => {
   const [value, setValue] = useState(initialValue);
-
+  const checkAlign = ():boolean=>{
+    if(columnId=='1'||columnId=='7'||columnId=='8'){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
   useEffect(() => {
     setValue(initialValue);
   }, [initialValue]);
@@ -28,7 +35,12 @@ const EditableCell: React.FC<EditableCellProps> = ({
       value={value}
       onChange={(e) => setValue(e.target.value)}
       onBlur={onBlur}
-      className="w-full px-2 py-1 text-sm bg-transparent focus:outline-none"
+      onClick={()=>{
+        console.log(columnId)
+      }}
+      className={`w-full px-2 py-1 bg-transparent text-xs  focus:outline-none 
+          ${checkAlign()?'text-right':'text-none'}
+        `}
     />
   );
 };

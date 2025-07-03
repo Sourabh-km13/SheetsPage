@@ -17,7 +17,7 @@ import Button2 from '../Buttons/Button2';
 
 const HeaderBottom: React.FC = () => {
     return (
-        <div className="flex justify-between items-center flex-wrap px-6 py-3 border-b border-gray-200 bg-white gap-4">
+        <div className="flex justify-between items-center flex-wrap px-4 py-3 border-b border-gray-200 bg-white gap-4">
             {/* Left: Toolbar title + action buttons */}
             <div className="flex items-center gap-4 flex-wrap text-[#121212]">
                 <span className="text-sm flex gap-2">

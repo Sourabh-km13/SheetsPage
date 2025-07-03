@@ -11,11 +11,16 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='relative'>
+        <div className='top-0 z-10 sticky '>
+
         <HeaderTop/>
         <HeaderBottom/>
+        </div>
+        <div className='overflow-x-scroll'>
 
         <SpreadsheetTable/>
+        </div>
       </div>
     </>
   )
