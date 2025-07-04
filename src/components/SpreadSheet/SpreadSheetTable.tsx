@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -79,7 +79,7 @@ const SpreadsheetTable: React.FC = () => {
     setData((prev) => prev.map((row) => [...row, '']));
   };
   type tagType = 'Status' | 'Priority'
-  const getTagStyle = (type: tagType, value: string): string => {
+  const getTagStyle = useCallback((type: tagType, value: string): string => {
     const map: Record<tagType, Record<string, string>> = {
       Status: {
         Complete: 'bg-green-100 text-green-800',
@@ -94,8 +94,7 @@ const SpreadsheetTable: React.FC = () => {
       },
     };
     return map[type]?.[value] || '';
-  };
-
+  },[])
   const tableColumns = useMemo<ColumnDef<string[]>[]>(() => {
     const baseCols: ColumnDef<string[]>[] = [
       {
@@ -154,7 +153,7 @@ const SpreadsheetTable: React.FC = () => {
     }));
 
     return [...baseCols, ...dynamicCols];
-  }, [columns]);
+  }, [columns ,getTagStyle]);
 
   const table = useReactTable({
     data,
