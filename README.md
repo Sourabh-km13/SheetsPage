@@ -1,69 +1,56 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **front-end-only prototype** built to closely replicate the provided Figma spreadsheet design, delivering a polished and interactive Google Sheets-like experience.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📎 Figma Design Reference
 
-## Expanding the ESLint configuration
+[Figma Design File →](https://www.figma.com/design/3nywpu5sz45RrCmwe68QZP/Intern-Design-Assigment?node-id=2-2535&t=DJGGMt8I4fiZjoIB-1)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧰 Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- ⚛️ **React 18*
+- 🛡 **TypeScript** (strict mode)
+- 🎨 **Tailwind CSS** (utility-first styling)
+- 📊 **@tanstack/react-table v8** (for spreadsheet behavior)
+- 🎯 **Lucide React** (for modern icons)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ✅ Core Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- ✏️ **Editable cells** with visual feedback (green border when editing)
+- 🔢 **Row numbering** column (#)
+- ➕ **Add new columns dynamically**
+- 🧭 **Resizable columns**
+- 🔄 **Horizontally scrollable table**
+- 🎨 **Styled "chips" for Status and Priority**
+- 🔍 **Search field** (for future integration)
+- 🖼️ **Icon headers** for Submitter, URL, Status, etc.
+- 📌 ** bottom bar** with tab states & button interaction
+- ⚙️ **Tab click logging** to console (no dead UI)
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## ✅ Acceptance Criteria Checklist
+
+| Criteria | Status |
+|---------|--------|
+| Pixel-perfect UI as per Figma | ✅ |
+| Google Sheet-like experience | ✅ |
+| Buttons/tabs change state or log to console | ✅ |
+| Lint + Type checks pass (`npm run lint`, `npm run type-check`) | ✅ |
+| Clean commit history | ✅ |
+| Stretch: Resizable columns | ✅ |
+
+---
+
+## 📁 Project Setup
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/Sourabh-km13/SheetsPage/
+cd spreadsheetPage
+npm install
+npm run dev
