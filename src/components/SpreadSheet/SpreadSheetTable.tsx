@@ -20,6 +20,7 @@ import {
   Split,
 } from "lucide-react";
 
+
 const defaultColumns = [
   'Job Request',
   'Submitted',
@@ -118,6 +119,7 @@ const SpreadsheetTable: React.FC = () => {
         </div>
       ),
       size: 150,
+      minSize:100,
       enableResizing: true,
       cell: ({ row }) => {
         const val = row.original[index];
@@ -161,11 +163,17 @@ const SpreadsheetTable: React.FC = () => {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+          console.log(e.currentTarget.innerText);
+          };
+
   return (
-    <div className=" bg-white text-[#121212] min-h-screen w-screen overflow-x-scroll">
+    <div className=" bg-white text-[#121212] verflow-x-scroll">
       <div className="flex justify-between ml-10 text-xs">
         <div className='basis-1/2 py-2 px-2 bg-[#e2e2e2]'>
-          <div className='flex gap-1 w-max bg-[#eeeeee] rounded-sm items-center p-1'>
+          <div className='flex gap-1 w-max bg-[#eeeeee] rounded-sm items-center p-1'
+          onClick={handleClick}
+          >
             <Link2 height={16} color='#1A8CFF' />
             <span>
               Q3 Financial Overview
@@ -175,16 +183,18 @@ const SpreadsheetTable: React.FC = () => {
         </div>
 
         <div className="flex w-fit divide-x divide-gray-100 overflow-hidden">
-          {/* ABC */}
-          <div className="flex items-center justify-between gap-2 px-4 py-2 bg-green-100 w-32">
+
+          <div className="flex items-center justify-between gap-2 px-4 py-2 bg-green-100 w-32"
+          onClick={handleClick}>
             <Split height={16} color='#A3ACA3'/>
             <span className="text-xs font-medium text-gray-800">ABC</span>
 
             <MoreHorizontal className="w-4 h-4 text-gray-400" />
           </div>
 
-          {/* Answer a question */}
-          <div className="flex items-center justify-between gap-2 px-4 py-2 w-60 bg-purple-200">
+
+          <div className="flex items-center justify-between gap-2 px-4 py-2 w-60 bg-purple-200"
+          onClick={handleClick}>
             <Split height={16} color='#A3ACA3'/>
 
             <span className="text-xs font-medium text-gray-800">Answer a question</span>
@@ -192,38 +202,27 @@ const SpreadsheetTable: React.FC = () => {
             <MoreHorizontal className="w-4 h-4 text-gray-400" />
           </div>
 
-          {/* Extract */}
-          <div className="flex items-center justify-between gap-2 px-4 py-2 bg-red-200 w-32">
+
+          <div className="flex items-center justify-between gap-2 px-4 py-2 bg-red-200 w-32"
+          onClick={handleClick}>
             <Split height={16} color='#A3ACA3'/>
             <span className="text-xs font-medium text-gray-800">Extract</span>
 
             <MoreHorizontal className="w-4 h-4 text-gray-400" />
           </div>
 
-          {/* Plus Button */}
+
           <div 
           onClick={addColumn}
           className="flex items-center justify-center px-4 py-2 bg-gray-200 w-32 cursor-pointer">
             <Plus className="w-5 h-5 text-black" />
           </div>
         </div>
-        {/* <button
-          onClick={addColumn}
-          className="px-3 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-200"
-        >
-          <Plus/>
-        </button>  */}
+        
       </div>
 
 
-      {/* <button
-          onClick={addColumn}
-          className="px-3 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-200"
-        >
-          <Plus/>
-        </button> */}
-
-      <div className=" border border-gray-200 rounded overflow-x-auto">
+      <div className=" border border-gray-100 rounded overflow-x-auto">
         <div className="min-w-max">
           {/* Header */}
           <div className=" flex bg-[#eeeeee]   text-xs font-semibold text-[#757575] select-none">
@@ -236,6 +235,9 @@ const SpreadsheetTable: React.FC = () => {
                    nth-[8]:bg-[#EAE3FC] nth-[9]:bg-[#EAE3FC] nth-[10]:bg-[#FFE9E0]
                   "
                   style={{ width: header.getSize() }}
+                  onClick={(e)=>{
+                    console.log(e.currentTarget.innerText)
+                  }}
                 >
                   {flexRender(header.column.columnDef.header, header.getContext())}
                   {header.column.getCanResize() && (
@@ -256,7 +258,7 @@ const SpreadsheetTable: React.FC = () => {
               {row.getVisibleCells().map((cell) => (
                 <div
                   key={cell.id}
-                  className="border-r text-center border-gray-100 px-2 py-2 truncate"
+                  className="border-r text-center border-gray-100 truncate"
                   style={{ width: cell.column.getSize() }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -266,6 +268,7 @@ const SpreadsheetTable: React.FC = () => {
           ))}
         </div>
       </div>
+      {/* <Footer/> */}
     </div>
   );
 };

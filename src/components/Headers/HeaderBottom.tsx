@@ -20,7 +20,11 @@ const HeaderBottom: React.FC = () => {
         <div className="flex justify-between items-center flex-wrap px-4 py-3 border-b border-gray-200 bg-white gap-4">
             {/* Left: Toolbar title + action buttons */}
             <div className="flex items-center gap-4 flex-wrap text-[#121212]">
-                <span className="text-sm flex gap-2">
+                <span className="text-sm flex gap-2"
+                onClick={()=>{
+                    console.log('toolbar')
+                }}
+                >
                     <span>Tool bar</span>
                     <span>{">>"}</span>
                 </span>
@@ -63,7 +67,11 @@ const HeaderBottom: React.FC = () => {
                     <Share2 className="w-4 h-4" />
                     Share
                 </Button2>
-                <button className="flex items-center gap-1 text-sm bg-[#4B6A4F] text-white px-4 py-2 rounded hover:bg-green-700 transition">
+                <button 
+                onClick={(e)=>{
+                    console.log(e.currentTarget.textContent)
+                }}
+                className="flex items-center gap-1 text-sm bg-[#4B6A4F] text-white px-4 py-2 rounded hover:bg-green-700 transition">
                     <Plus className="w-4 h-4" />
                     New Action
                 </button> 

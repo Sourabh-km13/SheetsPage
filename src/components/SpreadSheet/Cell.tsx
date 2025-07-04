@@ -38,7 +38,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
       onClick={()=>{
         console.log(columnId)
       }}
-      className={`w-full px-2 py-1 bg-transparent text-xs  focus:outline-none 
+      className={`w-full px-2 py-1 bg-transparent text-xs shadow-2xl focus:outline-[#6C8B70]
           ${checkAlign()?'text-right':'text-none'}
         `}
     />

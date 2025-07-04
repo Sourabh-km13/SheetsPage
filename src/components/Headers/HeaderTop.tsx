@@ -9,6 +9,9 @@ import {
 import React from "react";
 
 const HeaderTop: React.FC = () => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+        console.log(e.currentTarget.innerText);
+        };
     return (
         <div className="flex flex-row justify-between w-full px-4 py-2 border-b border-gray-200 bg-white gap-2">
             
@@ -18,11 +21,11 @@ const HeaderTop: React.FC = () => {
 
                     </div>
                 </div>
-                <span className="font-medium">Workspace</span>
+                <span className="font-medium" onClick={handleClick}>Workspace</span>
                 {" > "}
-                <span className=" font-medium">Folder 2</span>
+                <span className=" font-medium" onClick={handleClick}>Folder 2</span>
                 {" > "}
-                <span className="font-semibold text-gray-700">Spreadsheet 3</span>
+                <span className="font-semibold text-gray-700" onClick={handleClick}>Spreadsheet 3</span>
                 <Ellipsis color="#afafaf" />
             </div>
                 
@@ -33,9 +36,18 @@ const HeaderTop: React.FC = () => {
                         type="text"
                         placeholder="Search within sheet"   
                         className=" border-none rounded text-sm w-max max-w-60 outline-none "
+                        onChange={(e)=>{
+        
+                            console.log(e.target.value);
+                            
+                        }}
                     />
                 </div>
-                <div className="relative">
+                <div className="relative"
+                onClick={()=>{
+                    console.log('Notification')
+                }}
+                >
 
                     <Bell color="#121212"  />
                     <span className="absolute -top-1 -right-1 inline-flex items-center justify-center text-xs font-bold text-white bg-[#4B6A4F] rounded-full w-4 h-4">
@@ -44,7 +56,9 @@ const HeaderTop: React.FC = () => {
                 </div>
 
                 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2"
+                    onClick={handleClick}
+                >
                     <UserCircle className="w-6 h-6 text-gray-500"  />
                     <div className="text-sm text-gray-600">John Doe</div>
                 </div>

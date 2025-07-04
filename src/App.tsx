@@ -1,5 +1,6 @@
 
 import './App.css'
+import Footer from './components/Footer/Footer'
 import HeaderBottom from './components/Headers/HeaderBottom'
 import HeaderTop from './components/Headers/HeaderTop'
 
@@ -17,10 +18,11 @@ function App() {
         <HeaderTop/>
         <HeaderBottom/>
         </div>
-        <div className='overflow-x-scroll'>
+        <div className='border-2 mb-8 overflow-x-scroll'>
 
         <SpreadsheetTable/>
         </div>
+        <Footer/>
       </div>
     </>
   )
